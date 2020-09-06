@@ -4,9 +4,15 @@
     "name": "NTHU eat",
     "description": "This extension can help you check whether the restaurant is open",
     "version": "1.0",
-  
+
+    "icons": {
+      "16": "icon_16.png",
+      "48": "icon_128.png",
+      "128": "icon_128.png"
+    },
     "browser_action": {
-      "default_icon": "icon.png",
+      
+      "default_icon": "icon_16.png",
       "default_popup": "popup.html"
     },
     "permissions": [
