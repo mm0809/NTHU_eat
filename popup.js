@@ -154,8 +154,11 @@ $(document).ready(function() {
                 default:
                     break;
             }
-
-            var col = $("<div></div>").addClass("col-3").append($("<div></div>").addClass("card " + tmp).append(`<p class="card-title">  ${dataObject[i*4+j]['name']} </p>`));
+            var remark = '';
+            if(currentShop.備註 != '') {
+                remark = `<span data-toggle="tooltip" data-placement="top" title=${currentShop.備註}>&#9888;</apan>`
+            }
+            var col = $("<div></div>").addClass("col-3").append($("<div></div>").addClass("card " + tmp).append(`<p class="card-title">  ${currentShop.name + remark} </p>`));
             
             console.log(timeHM);
             $("#"+i).append(col);
