@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css\bootstrap.min.css">
+
+  <!-- load color picker and setting-->
+  <script src="js\jscolor.js"></script>
+
+
+
+  <title>test</title>
+  <style>
+    .top-nav {
+      width: 450px;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      font-size: 12px;
+      margin-bottom: 3px;
+      margin-top: 3px;
+    }
+
+    /* .shopOpen {
+      background-color: rgba(33, 236, 84, 0.1);
+    }
+
+    .shopClose {
+      background-color: rgba(214, 34, 34, 0.1);
+    }
+
+    .shopOpen:hover {
+      background-color: rgba(39, 116, 58, 0.4);
+    }
+
+    .shopClose:hover {
+      background-color: rgba(214, 34, 34, 0.4);
+    } */
+
+    .container {
+      height: 500px
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+
+    <div class="btn-group top-nav" role="group">
+      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        NTHU eat
+      </button>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="popup.html">Home</a>
+        <a class="dropdown-item" href="#">Color setting</a>
+        <a class="dropdown-item" href="myfavoriate.html">My favorite</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <p>
+        Shop open
+        <input data-jscolor="{preset:'eSO'}" , id="eSO">
+      </p>
+      <p>
+        Shop open(hover)
+        <input data-jscolor="{preset:'eSOH'}" , id="eSOH">
+      </p>
+      <p>
+        Shop close
+        <input data-jscolor="{preset:'eSC'}" , id="eSC">
+      </p>
+      <p>
+        Shop close(hover)
+        <input data-jscolor="{preset:'eSCH'}" , id="eSCH">
+      </p>
+
+      <div style="height: 150px;"></div>
+      <div class="row justify-content-around" id="0">
+        <div class="col-3">
+          <div class="card shopOpen">
+            <p class="card-title">清華水漾餐廳</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card shopClose">
+            <p class="card-title">麥當勞</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" class="btn btn-primary btn-lg btn-block save">儲存設定</button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="js\jQuery.min.js"></script>
+  <script src="js\jquery.csv.min.js"></script>
+  <script src="js\bootstrap.bundle.min.js"></script>
+  <script src="js\jscolorrun.js"></script>
+</body>
+
+</html>
