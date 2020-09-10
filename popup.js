@@ -152,59 +152,16 @@ $(document).ready(function () {
         if (dataObject[shop]["備註"] != '') {
             remark = `<span data-toggle="tooltip" data-placement="top" title=${dataObject[shop]["備註"]}>&#9888;</apan>`
         }
-        var col = $("<div></div>").append($("<div></div>").addClass("card " + tmp).append(`<p class="card-title">  ${shop + remark} </p>` + `<p class="card-text"> ${dataObject[shop]['備註']} </p>`));
+        var col = $('<div></div>').append($('<div></div>').addClass('card ' + tmp).append(`<p class="card-title">  ${shop + remark} </p>` + `<p class="card-text"> ${dataObject[shop]['備註']} </p>`));
 
         console.log(timeHM);
-        $("#" + cnt%4).append(col);
+        $('#' + cnt%4).append(col);
 
         cnt += 1;
     }
 
-    // for (var i = 0; i <= num / 4; i++) {
-    //     for (var j = 0; j < 4; j++) {
-    //         if (i * 4 + j >= num) {
-    //             break;
-    //         }
-    //         var tmp = '';
-    //         let currentShop = dataObject[i * 4 + j];
-
-    //         switch (UTCday) {
-    //             case 1:
-    //             case 2:
-    //             case 3:
-    //             case 4:
-    //             case 5:
-    //                 var shopOpenTime = currentShop["週一至週五"]
-    //                 tmp = getStatus(shopOpenTime);
-
-    //                 break;
-
-    //             case 6:
-    //                 var shopOpenTime = currentShop["週六"]
-    //                 tmp = getStatus(shopOpenTime);
-    //                 break;
-
-    //             case 0:
-    //                 var shopOpenTime = currentShop["週日"]
-    //                 tmp = getStatus(shopOpenTime);
-    //                 break;
-
-    //             default:
-    //                 break;
-    //         }
-    //         var remark = '';
-    //         if (currentShop.備註 != '') {
-    //             remark = `<span data-toggle="tooltip" data-placement="top" title=${currentShop.備註}>&#9888;</apan>`
-    //         }
-    //         var card = $("<div></div>").addClass("col-3").append($("<div></div>").addClass("card " + tmp).append(`<p class="card-title">  ${currentShop.name + remark} </p>`));
-
-    //         console.log(timeHM);
-    //         $("#" + i/4).append(card);
-    //     }
-    // }
-
+    
     // set color
-
     var colorObj = {
         SO: 'rgba(184,187,38,1)',
         SOH: 'rgba(152,151,26,1)',
@@ -230,21 +187,16 @@ $(document).ready(function () {
         $(this).css("background-color", colorObj.SC);
     });
 
-    $('.card').hover(function() {
-        $(this).click(function(){
-            $(this).css('z-index', '2');
-            $(this).children('.card-text').show();
-            $(this).css('width', '180px');
-           // $(this).animate({left:"+30px"})
-            //$(this).parent().css('z-index', '2');
-
-        })
-        },function() {
-            $(this).children('.card-text').hide();
-            $(this).css('width', '');
-            $(this).css('z-index', '');
-           // $(this).animate({left:"0px"})
-    }) 
+    $('.card').click(function() {
+        var target = $(this).children('.card-title').text().replaceAll(' ', '').replace('⚠', '');
+        console.log(typeof(target));
+        console.log(target);
+        $('#shopModalLabel').text(target);
+        $('#modalMTF').children('span').text(dataObject[target]['週一至週五']);
+        $('#modalSAT').children('span').text(dataObject[target]['週六']);
+        $('#modalSUN').children('span').text(dataObject[target]['週日']);
+        $('#exampleModal').modal('show');
+    });
     
     // $(".card").click(function(event) {
     //     alert($(event.currentTarget.p).text());
