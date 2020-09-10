@@ -24,6 +24,7 @@ function displayColor (str, color, target){
 
 $('.shopOpen').css('background-color', eOriginColor['SO']);
 $('.shopClose').css('background-color', eOriginColor['SC']);
+$('body').css('background-color', eOriginColor['BG']);
 
 // set the preset of color picker
 jscolor.presets.eSO = {
@@ -50,7 +51,7 @@ jscolor.presets.eSCH = {
     value: originColor.SCH,
     onInput: 'displayColor("SCH", this.toRGBAString(), 0)'
 };
-jscolor.presets.eSCHBG = {
+jscolor.presets.eBG = {
     format: 'rgba', 
     backgroundColor: 'rgba(204,204,204,1)',
     value: originColor.BG,
