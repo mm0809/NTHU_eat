@@ -166,14 +166,17 @@ $(document).ready(function () {
         SO: 'rgba(184,187,38,1)',
         SOH: 'rgba(152,151,26,1)',
         SC: 'rgba(251,73,52,1)',
-        SCH: '	rgba(204,36,29,1)',
+        SCH: 'rgba(204,36,29,1)',
+        BG: 'rgba(204,36,29,1)'
     }
     initColorLocalStorage('SO', 'rgba(184,187,38,1)', colorObj);
     initColorLocalStorage('SOH', 'rgba(152,151,26,1)', colorObj);
     initColorLocalStorage('SC', 'rgba(251,73,52,1)', colorObj);
-    initColorLocalStorage('SCH', '	rgba(204,36,29,1)', colorObj);
+    initColorLocalStorage('SCH', 'rgba(204,36,29,1)', colorObj);
+    initColorLocalStorage('BG', 'rgba(255,255,255,1)', colorObj);
 
 
+    $("body").css("background-color", colorObj.BG);
     $(".shopOpen").css("background-color", colorObj.SO);
     $(".shopClose").css("background-color", colorObj.SC);
     $(".shopOpen").hover(function () {
