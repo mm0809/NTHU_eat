@@ -64,39 +64,15 @@ $(document).ready(function () {
         }
         console.log('done');
     })
-    //
-    // $.get('newList.csv', function(data) {
-    //     console.log("read file..");
-    //     console.log(data);
-    //     dataObject = $.csv.toObjects(data);       
-    //     for (var i = 0; i < dataObject.length; i++) {
-    //         var tmp = [];
-    //         for(var a of dataObject[i].週一至週五.split(' ')) {
-    //                 tmp.push(a);  
-    //         }
-    //         dataObject[i].週一至週五 = tmp;
-    //         tmp = [];
-    //         for(var a of dataObject[i].週六.split(' ')) {
-    //             tmp.push(a);  
-    //         }
-    //         dataObject[i].週六 = tmp;
-    //         tmp = [];
-    //         for(var a of dataObject[i].週日.split(' ')) {
-    //             tmp.push(a);  
-    //         }
-    //         dataObject[i].週日 = tmp;
-    //     }
-
-    //     console.log(dataObject);
-    // })
+    
 
     // num of shop
 
     // generate column element
-    for (var i = 0; i < 4; i += 1) {
-        var div = $("<div></div>").addClass("col-3 inline-block").attr("id", i);
-        $(".row").append(div);
-    }
+    // for (var i = 0; i < 4; i += 1) {
+    //     var div = $("<div></div>").addClass("col-3 inline-block").attr("id", i);
+    //     $(".row").append(div);
+    // }
 
     // set current time
     var time = new Date();
@@ -124,7 +100,10 @@ $(document).ready(function () {
     var cnt = 0;
     for(var shop in dataObject) {
         var tmp = '';
-
+        if (cnt % 4 == 0) {
+            var div = $("<div></div>").addClass('row').attr('id', `row-${cnt / 4}`);
+            $('.shop-list').append(div);
+        }
         switch (UTCday) {
             case 1:
             case 2:
@@ -152,10 +131,10 @@ $(document).ready(function () {
         if (dataObject[shop]["備註"] != '') {
             remark = `<span data-toggle="tooltip" data-placement="top" title=${dataObject[shop]["備註"]}>&#9888;</apan>`
         }
-        var col = $('<div></div>').append($('<div></div>').addClass('card ' + tmp).append(`<p class="card-title">  ${shop + remark} </p>` + `<p class="card-text"> ${dataObject[shop]['備註']} </p>`));
+        var col = $('<div></div>').addClass('col-3').append($('<div></div>').addClass('card ' + tmp).append(`<p class="card-title">  ${shop + remark} </p>` + `<p class="card-text"> ${dataObject[shop]['備註']} </p>`));
 
         console.log(timeHM);
-        $('#' + cnt%4).append(col);
+        $(`#row-${parseInt(cnt / 4)}`).append(col);
 
         cnt += 1;
     }
