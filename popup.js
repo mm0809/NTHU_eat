@@ -53,6 +53,59 @@ $(document).ready(function () {
         }
     }
 
+    // generate shops html element
+    function generateCardList(list, listName) {
+        var collapseHtml = `<div class="container-fluid  collapse-bar rounded " target=#${listName}>` +
+                                listName +
+                            '</div>'+
+                            `<div id=${listName} class="collapse border ">` +
+                                '<div class="container-fluid  shop-list">'+
+                                '</div>' +
+                            '</div>';
+        $('.main').append(collapseHtml);
+        var cnt = 0;
+        for (const shop of list) {
+            var tmp = '';
+            if (cnt % 4 == 0) {
+                var div = $("<div></div>").addClass('row').attr('id', `row-${cnt / 4}`);
+                $(`#${listName}>.shop-list`).append(div);
+            }
+            switch (UTCday) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    var shopOpenTime = dataObject[shop]["週一至週五"]
+                    tmp = getStatus(shopOpenTime);
+                    break;
+
+                case 6:
+                    var shopOpenTime = dataObject[shop]["週六"]
+                    tmp = getStatus(shopOpenTime);
+                    break;
+
+                case 0:
+                    var shopOpenTime = dataObject[shop]["週日"]
+                    tmp = getStatus(shopOpenTime);
+                    break;
+
+                default:
+                    break;
+            }
+            var remark = '';
+            if (dataObject[shop]["備註"] != '') {
+                remark = `<span data-toggle="tooltip" data-placement="top" title=${dataObject[shop]["備註"]}>&#9888;</apan>`
+            }
+            var col = $('<div></div>').addClass('col-3').append($('<div></div>').addClass('card ' + tmp).append(`<p class="card-title">${shop + remark}</p>` + `<p class="card-text">${dataObject[shop]['備註']}</p>`));
+
+            console.log(timeHM);
+            $(`#${listName}>.shop-list>#row-${parseInt(cnt / 4)}`).append(col);
+
+            cnt += 1;
+        }
+    }
+
     jQuery.ajaxSetup({ async: false });
     $.get('list.json', function (data) {
         console.log(data);
@@ -64,15 +117,8 @@ $(document).ready(function () {
         }
         console.log('done');
     })
-    
 
-    // num of shop
 
-    // generate column element
-    // for (var i = 0; i < 4; i += 1) {
-    //     var div = $("<div></div>").addClass("col-3 inline-block").attr("id", i);
-    //     $(".row").append(div);
-    // }
 
     // set current time
     var time = new Date();
@@ -96,50 +142,18 @@ $(document).ready(function () {
     console.log(UTCday);
 
 
-    // generate shops html element
-    var cnt = 0;
-    for(var shop in dataObject) {
-        var tmp = '';
-        if (cnt % 4 == 0) {
-            var div = $("<div></div>").addClass('row').attr('id', `row-${cnt / 4}`);
-            $('.shop-list').append(div);
-        }
-        switch (UTCday) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                var shopOpenTime =  dataObject[shop]["週一至週五"]
-                tmp = getStatus(shopOpenTime);
-                break;
-
-            case 6:
-                var shopOpenTime =  dataObject[shop]["週六"]
-                tmp = getStatus(shopOpenTime);
-                break;
-
-            case 0:
-                var shopOpenTime =  dataObject[shop]["週日"]
-                tmp = getStatus(shopOpenTime);
-                break;
-
-            default:
-                break;
-        }
-        var remark = '';
-        if (dataObject[shop]["備註"] != '') {
-            remark = `<span data-toggle="tooltip" data-placement="top" title=${dataObject[shop]["備註"]}>&#9888;</apan>`
-        }
-        var col = $('<div></div>').addClass('col-3').append($('<div></div>').addClass('card ' + tmp).append(`<p class="card-title">  ${shop + remark} </p>` + `<p class="card-text"> ${dataObject[shop]['備註']} </p>`));
-
-        console.log(timeHM);
-        $(`#row-${parseInt(cnt / 4)}`).append(col);
-
-        cnt += 1;
-    }
-
+    var list = ["麥當勞", "比司多", "李記小館", "麻吉牛排", "就是愛壽司", "大洪食堂", "海盜滷味", "鑫鴻(珈名鮮茶)", "堤兒小店(小吃部)", "7-11", "八方雲集", "和風風味屋", "羹飯大叔"];
+    var list2 = ["酷雞雞排飯", "金展自助餐", "三顧茅廬", "利竫和食", "弘謙食堂", "晨光早午餐", "小木屋鬆餅", "全家便利商店", "管理部", "眼鏡部", "洗衣部", "水木百貨", "胖達咖啡", "Moment Caf'e", "理髮部", "利捷打字行"];
+    var list3 = ["堤兒小店(風雲)", "水木書苑", "Straighta", "越好食堂", "紅燒如意坊", "蔬適圈", "淳在幸福", "友記麵食館", "帕森義大利麵", "漢城異國美食", "家味燒臘", "喜番咖哩", "牛肉先生", "墨尼捲餅", "珍御品粥麵館", "倆小食", "鳴野食蘋早午餐", "胖老爹美式炸雞", "The Loft"];
+    var list4 = ["清華水漾餐廳", "人社院餐廳", "第二招待所中餐廳",  "教職員餐廳", "日安餐坊", "果子咖啡"]
+     
+    generateCardList(list, '小吃部_清大');
+    generateCardList(list2, '水木_清大');
+    generateCardList(list3, '風雲_清大');
+    generateCardList(list4, '其他_清大')
     
+
+
     // set color
     var colorObj = {
         SO: 'rgba(184,187,38,1)',
@@ -169,17 +183,21 @@ $(document).ready(function () {
         $(this).css("background-color", colorObj.SC);
     });
 
-    $('.card').click(function() {
-        var target = $(this).children('.card-title').text().replaceAll(' ', '').replace('⚠', '');
-        console.log(typeof(target));
+    $('.card').click(function () {
+        var target = $(this).children('.card-title').text().replace('⚠', '');
+        console.log(typeof (target));
         console.log(target);
         $('#shopModalLabel').text(target);
+        $('#modalP').children('span').text(dataObject[target]['place']);
         $('#modalMTF').children('span').text(dataObject[target]['週一至週五']);
         $('#modalSAT').children('span').text(dataObject[target]['週六']);
         $('#modalSUN').children('span').text(dataObject[target]['週日']);
         $('#exampleModal').modal('show');
     });
-    
+    $('.collapse-bar').click(function() {
+        console.log('click')
+        $($(this).attr('target')).collapse('toggle');
+    });
     // $(".card").click(function(event) {
     //     alert($(event.currentTarget.p).text());
     // });

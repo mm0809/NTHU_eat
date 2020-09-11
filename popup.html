@@ -36,6 +36,18 @@
       height: 100%;
       margin:0;
     }
+    .card-header {
+      padding: 0;
+    }
+    .card-title {
+      color:rgb(40, 40, 40);
+      font-weight: 700;
+    }
+    .collapse-bar {
+      background-color: rgb(60, 56, 53);
+      margin:5px 0px;
+      color: rgb(165, 154, 133);
+    }
     body { padding-right: 0 !important }
     /* body {
       background-color: rgba(33, 236, 84,0.1);
@@ -60,7 +72,7 @@
 
 <body>
 
-  <div class="container-fluid" >
+  <div class="container-fluid main" style="min-height: 600px;">
 
 
     <div class="btn-group top-nav" role="group">
@@ -75,10 +87,13 @@
       </div>
     </div>
 
-    <div class="container-fluid  shop-list">
+    
+    
+    
+    
+    
       
-    </div>
-     
+    
     
     
   
@@ -95,6 +110,8 @@
           </button>
         </div>
         <div class="modal-body">
+            <p class="font-weight-bold" id='modalP'>地點 : <span></span></p>
+
           <p class="font-weight-bold" id='modalMTF'>週一至週五 : <span></span></p>
           
           <p class="font-weight-bold" id='modalSAT'>週六 : <span></span></p>
