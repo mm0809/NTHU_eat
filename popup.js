@@ -142,31 +142,31 @@ $(document).ready(function () {
     console.log(UTCday);
 
 
-    var list = ["麥當勞", "比司多", "李記小館", "麻吉牛排", "就是愛壽司", "大洪食堂", "海盜滷味", "鑫鴻(珈名鮮茶)", "堤兒小店(小吃部)", "7-11", "八方雲集", "和風風味屋", "羹飯大叔"];
-    var list2 = ["酷雞雞排飯", "金展自助餐", "三顧茅廬", "利竫和食", "弘謙食堂", "晨光早午餐", "小木屋鬆餅", "全家便利商店", "管理部", "眼鏡部", "洗衣部", "水木百貨", "胖達咖啡", "Moment Caf'e", "理髮部", "利捷打字行"];
+    var list = ["麥當勞", "比司多", "李記小館", "麻吉牛排", "就是愛壽司", "大洪食堂", "海盜滷味", "鑫鴻(珈名鮮茶)", "堤兒小店(小吃部)", "7-11"];
+    var list2 = ["八方雲集", "和風風味屋", "羹飯大叔", "酷雞雞排飯", "金展自助餐", "三顧茅廬", "利竫和食", "弘謙食堂", "晨光早午餐", "小木屋鬆餅", "全家便利商店", "管理部", "眼鏡部", "洗衣部", "水木百貨", "胖達咖啡", "Moment Caf'e", "理髮部", "利捷打字行"];
     var list3 = ["堤兒小店(風雲)", "水木書苑", "Straighta", "越好食堂", "紅燒如意坊", "蔬適圈", "淳在幸福", "友記麵食館", "帕森義大利麵", "漢城異國美食", "家味燒臘", "喜番咖哩", "牛肉先生", "墨尼捲餅", "珍御品粥麵館", "倆小食", "鳴野食蘋早午餐", "胖老爹美式炸雞", "The Loft"];
     var list4 = ["清華水漾餐廳", "人社院餐廳", "第二招待所中餐廳",  "教職員餐廳", "日安餐坊", "果子咖啡"]
      
     generateCardList(list, '小吃部_清大');
     generateCardList(list2, '水木_清大');
     generateCardList(list3, '風雲_清大');
-    generateCardList(list4, '其他_清大')
+    generateCardList(list4, '其他_清大');
     
 
 
     // set color
     var colorObj = {
-        SO: 'rgba(184,187,38,1)',
-        SOH: 'rgba(152,151,26,1)',
-        SC: 'rgba(251,73,52,1)',
+        SO: 'rgba(152,151,26,1)',
+        SOH: 'rgba(184,187,38,1)',
+        SC: 'rgba(204,36,29,1)',
         SCH: 'rgba(204,36,29,1)',
-        BG: 'rgba(204,36,29,1)'
+        BG: 'rgba(40,40,40,1)'
     }
-    initColorLocalStorage('SO', 'rgba(184,187,38,1)', colorObj);
-    initColorLocalStorage('SOH', 'rgba(152,151,26,1)', colorObj);
+    initColorLocalStorage('SO', 'rgba(152,151,26,1)', colorObj);
+    initColorLocalStorage('SOH', 'rgba(184,187,38,1)', colorObj);
     initColorLocalStorage('SC', 'rgba(251,73,52,1)', colorObj);
-    initColorLocalStorage('SCH', 'rgba(204,36,29,1)', colorObj);
-    initColorLocalStorage('BG', 'rgba(255,255,255,1)', colorObj);
+    initColorLocalStorage('SCH', 'rgba(251,73,52,1)', colorObj);
+    initColorLocalStorage('BG', 'rgba(40,40,40,1)', colorObj);
 
 
     $("body").css("background-color", colorObj.BG);
@@ -192,14 +192,19 @@ $(document).ready(function () {
         $('#modalMTF').children('span').text(dataObject[target]['週一至週五']);
         $('#modalSAT').children('span').text(dataObject[target]['週六']);
         $('#modalSUN').children('span').text(dataObject[target]['週日']);
+        $('#modalPS').hide();
+        if(dataObject[target]['備註'] !== "") {
+            $('#modalPS').children('span').text(dataObject[target]['備註']);
+            $('#modalPS').show();
+        }
         $('#exampleModal').modal('show');
     });
     $('.collapse-bar').click(function() {
         console.log('click')
         $($(this).attr('target')).collapse('toggle');
     });
-    // $(".card").click(function(event) {
-    //     alert($(event.currentTarget.p).text());
-    // });
 
+
+    /* testing below */
+    
 });
